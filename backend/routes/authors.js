@@ -75,6 +75,7 @@
  */
 const router = require('express').Router();
 const { celebrate, Joi } = require('celebrate');
+const auth = require('../middlewares/auth');
 const {
   getAuthors,
   getAuthor,
@@ -86,7 +87,7 @@ const {
   getAuthorsByEmail,
 } = require('../controllers/authors');
 
-router.patch('/me/avatar', celebrate(
+router.patch('/me/avatar', auth, celebrate(
   {
     body: Joi.object().keys({
       avatar: Joi.string().pattern(/^http(s)?:\/\/(www\.)?[\w\-\.\_\~\:\/\?\#\[\]\@\!\$\&\'\(\)\*\+\,\;\=]+$/).min(12),
@@ -94,7 +95,7 @@ router.patch('/me/avatar', celebrate(
   },
 ), updateAvatar);
 
-router.patch('/me/credentials', celebrate(
+router.patch('/me/credentials', auth, celebrate(
   {
     body: Joi.object().keys({
       email: Joi.string().required().email(),
@@ -103,11 +104,11 @@ router.patch('/me/credentials', celebrate(
   },
 ), updateCredentials);
 
-router.get('/me', getMe);
+router.get('/me', auth, getMe);
 router.get('/searchAuthor', getAuthorsByName);
 router.get('/email/:email', getAuthorsByEmail);
 
-router.patch('/me', celebrate(
+router.patch('/me', auth, celebrate(
   {
     body: Joi.object().keys({
       firstName: Joi.string().min(2).max(40),

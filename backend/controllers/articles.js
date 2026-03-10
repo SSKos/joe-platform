@@ -34,7 +34,7 @@ const createArticle = (req, res, next) => {
 const getArticle = (req, res, next) => {
   const { articleID } = req.params;
   // const authorID = req.user._id;
-  Article.find({ state: 'Published', articleID })
+  Article.find({ state: 'Published', _id: articleID })
     .then((article) => {
       if (!article) {
         throw new errors.WrongArticleError('No article found');

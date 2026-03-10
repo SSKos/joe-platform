@@ -114,7 +114,7 @@ router.post('/:articleID/selectReviewer', auth, celebrate(
 ), selectReviewer);
 router.get('/:articleID', celebrate(
   {
-    body: Joi.object().keys({
+    params: Joi.object().keys({
       articleID: Joi.string().length(24).required(),
     }),
   },
