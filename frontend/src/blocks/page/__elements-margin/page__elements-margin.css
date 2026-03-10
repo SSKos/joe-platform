@@ -1,0 +1,11 @@
+.page__elements-margin {
+  margin-top: 50px;
+  margin-bottom: 66px;
+}
+
+@media all and (max-width: 320px) {
+  .page__elements-margin {
+    margin-top: 36px;
+    margin-bottom: 48px;
+  }
+}

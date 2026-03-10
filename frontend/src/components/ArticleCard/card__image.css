@@ -1,0 +1,16 @@
+/* Images can be toggled off by the user */
+
+.card__image {
+  width: 100%;
+  object-fit: scale-down;
+  height: 150px;
+  margin: 7px auto;
+
+}
+
+@media all and (max-width: 540px) {
+  .card__image {
+    height: 120px;
+    margin: 5px auto;
+  }
+}

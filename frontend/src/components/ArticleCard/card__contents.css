@@ -1,0 +1,19 @@
+.card__contents {
+  width: 100%;
+  /* max-height: 536px; */
+  font-family: Arial, Helvetica, sans-serif;
+  font-style: normal;
+  color: black;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  justify-self: center;
+  transition: 3s linear;
+  overflow: hidden;
+}
+
+/* @media (hover: hover) {
+  .card__contents:hover {
+    overflow: auto;
+  }
+} */

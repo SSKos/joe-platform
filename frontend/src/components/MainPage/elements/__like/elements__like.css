@@ -1,0 +1,23 @@
+.elements__like {
+  min-width: 24px;
+  height: 24px;
+  background-color: rgb(0, 0, 0,0);
+  background-image: url("../../../../images/heart.svg");
+  margin-right: 17px;
+  margin-top: 31px;
+  border: none;
+  padding: 0;
+  background-position: center;
+  background-repeat: no-repeat;
+  transition: 0.4s linear;
+}
+
+.elements__like:hover {
+  cursor: pointer;
+  opacity: 0.5;
+}
+
+  .elements__like_active {
+    cursor: pointer;
+    background-image: url("../../../../images/black-heart.svg");
+  }

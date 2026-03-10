@@ -1,0 +1,14 @@
+.article-submit__checkbox-label {
+  display: inline-flex;
+  cursor: pointer;
+  position: relative;
+  margin: 5px auto 5px 0;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 17px;
+}
+
+.article-submit__checkbox-label:hover {
+  cursor: pointer;
+  display: flex;
+}

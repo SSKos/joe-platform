@@ -1,0 +1,11 @@
+.articleTechnical{
+  width: 100%;
+  display: flex;
+  border-bottom: 1px solid rgb(84, 84, 84, 0.5);
+}
+
+@media all and (max-width: 540px) {
+  .articleTechnical {
+    flex-direction: column;
+  }
+}

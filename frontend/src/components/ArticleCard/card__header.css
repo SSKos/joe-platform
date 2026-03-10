@@ -1,0 +1,5 @@
+.card__header {
+  display: flex;
+  font-size: 10px;
+  line-height: 12px;
+}

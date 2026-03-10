@@ -1,0 +1,21 @@
+Sign up
+Sign in
+Author getMe
+Author update
+Authors find by name
+Authors get
+Affiliation create
+Affiliation get
+Article create
+Article get
+Article create
+Articles get
+Article submit
+Article publish
+Revision create
+Revision edit
+Revision current get
+Select reviewer
+Review create
+Reviews get
+Get authors by name

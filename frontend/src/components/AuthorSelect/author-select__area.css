@@ -1,0 +1,5 @@
+.author-select__area{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}

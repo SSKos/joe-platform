@@ -1,0 +1,4 @@
+.article-submit__input_title {
+  min-width: 500px;
+  display: flex;
+}

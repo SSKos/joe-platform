@@ -1,0 +1,12 @@
+.articleTechnical__element-data{
+  font-size: 12;
+
+}
+
+@media all and (max-width: 540px) {
+  .articleTechnical__element-data {
+    /* padding: 7px 0; */
+    margin: auto auto auto 5px;
+    font-size: 10px;
+  }
+}

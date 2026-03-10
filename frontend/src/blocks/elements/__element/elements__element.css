@@ -1,0 +1,10 @@
+.elements__element {
+  max-width: 282px;
+  min-width: 282px;
+  min-height: 361px;
+  border-radius: 10px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}

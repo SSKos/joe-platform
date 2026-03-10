@@ -1,0 +1,11 @@
+.card__authors-aff {
+    font-size: 10px;
+    line-height: 16px;
+    font-style: italic;
+    color: grey;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1;
+    transition: 0.2s linear;
+  }

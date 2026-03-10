@@ -1,0 +1,13 @@
+.banner {
+  width: 100%;
+  display: flex;
+  border-bottom: 1px solid rgb(84, 84, 84, 0.7);
+
+  height: 100vh;
+  background-color: #eee;
+  background-image: url(../../../images/index-header.jpg);
+  /*https://images.unsplash.com/photo-1600468681740-5d648abdb074 */
+  background-size: cover;
+  background-position: center;
+  color: white;
+}

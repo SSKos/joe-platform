@@ -1,0 +1,15 @@
+.article-submit__button-save{
+  width: 130px;
+  height: 30px;
+  background-color: rgb(235, 233, 233);
+  padding: 5px;
+  box-sizing: border-box;
+  border: 1px solid rgb(83, 83, 83);
+  text-align: center;
+  font-size: 12px;
+  cursor: pointer;
+  transition: linear 0.3s;
+  border-radius: 5px;
+  margin: 0;
+  align-self: center;
+}

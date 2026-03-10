@@ -1,0 +1,12 @@
+.article-submit__technical-element-name{
+  margin: auto 15px auto 5px;
+  font-size: 12px;
+  font-style: italic;
+}
+
+@media all and (max-width: 540px) {
+  .article-submit__technical-element-name{
+    margin: auto auto auto 5px;
+    font-size: 10px;
+  }
+}

@@ -1,0 +1,26 @@
+.elements__num-like {
+  min-width: 10px;
+  height: 13px;
+  font-family: Inter;
+font-style: normal;
+font-weight: normal;
+font-size: 13px;
+line-height: 16px;
+text-align: center;
+color: #000000;
+  margin-right: 17px;
+  margin-top: 0;
+  border: none;
+  padding: 0;
+  transition: 0.4s linear;
+}
+
+.elements__num-like:hover {
+  cursor: pointer;
+  opacity: 0.5;
+}
+
+  .elements__num-like_active {
+    cursor: pointer;
+    background-image: url("../../../images/black-heart.svg");
+  }

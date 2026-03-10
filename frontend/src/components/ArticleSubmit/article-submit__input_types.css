@@ -1,0 +1,24 @@
+.article-submit__input_author {
+  max-width: 200px;
+}
+
+.article-submit__input_organisation {
+  max-width: 200px;
+}
+
+.article-submit__input_abstract {
+  min-height: 100px;
+}
+
+.article-submit__input_fulltext {
+  height: 200px;
+}
+
+.article-submit__input_article-type {
+  margin: 2px auto 2px 2px;
+  max-width: 200px;
+}
+.article-submit__input_article-rating {
+  margin: 2px auto 2px 2px;
+  max-width: 100px;
+}

@@ -1,0 +1,9 @@
+.article__additional{
+  width: 100%;
+  display: grid;
+  justify-items: left;
+  gap: 5px;
+  grid-template-columns: repeat(auto-fit, minmax(282px, 1fr));
+  border-top: 1px solid rgb(84, 84, 84, 0.5);
+  margin-top: 10px;
+}

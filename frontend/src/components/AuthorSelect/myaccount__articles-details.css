@@ -1,0 +1,20 @@
+.myaccount__articles-details {
+  width: 100%;
+  display: grid;
+  justify-items: start;
+  gap: 17px;
+  grid-template-columns: 84px 150px 150px 1fr;
+  /* repeat(auto-fit, minmax(282px, 1fr)) */
+}
+
+@media all and (max-width: 920px) {
+  .myaccount__articles-details {
+    width: calc(282*2px + 17px);
+  }
+}
+
+@media all and (max-width: 600px) {
+  .myaccount__articles-details {
+    width: 100%;
+  }
+}

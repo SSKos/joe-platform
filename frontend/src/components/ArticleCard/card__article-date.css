@@ -1,0 +1,7 @@
+.card__article-date{
+	font-weight: bold;
+}
+
+.card__article-date::before {
+  content: "Published: ";
+}

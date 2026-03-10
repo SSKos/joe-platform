@@ -1,0 +1,12 @@
+.banner__title {
+  font-size: 80px;
+  color: white;
+  font-weight: 500;
+  margin: auto auto 20px;
+}
+
+@media all and (max-width: 540px) {
+  .banner__title {
+    font-size: 64px;
+  }
+}

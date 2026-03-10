@@ -1,0 +1,13 @@
+.articleTechnical__element-name{
+  margin: auto 15px auto 5px;
+  font-size: 12px;
+  font-style: italic;
+}
+
+@media all and (max-width: 540px) {
+  .articleTechnical__element-name {
+    /* padding: 7px 0; */
+    margin: auto auto auto 5px;
+    font-size: 10px;
+  }
+}

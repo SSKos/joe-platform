@@ -1,0 +1,9 @@
+.author-select__order-item{
+  max-width: 400px;
+  display: grid;
+  grid-template-columns: auto auto 28px 32px 49px;
+  gap: 4px;
+  justify-items: right;
+  justify-self: flex-end;
+  margin: 5px auto 5px 5px;
+}

@@ -1,0 +1,18 @@
+.registration__underbutton {
+  width: 358px;
+  height: 17px;
+  margin-top: 15px;
+  font-family: Inter;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 17px;
+  text-align: center;
+  color: #000000;
+  text-decoration: none;
+
+}
+
+.registration__underbutton:hover {
+  opacity: 0.5;
+}

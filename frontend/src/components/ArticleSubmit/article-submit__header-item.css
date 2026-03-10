@@ -1,0 +1,6 @@
+.article-submit__header-item {
+  display: flex;
+  margin: 0 4px 0 2px;
+  font-size: 11px;
+  min-width: 100px;
+}

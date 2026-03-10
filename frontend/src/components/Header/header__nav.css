@@ -1,0 +1,14 @@
+.header__nav {
+  display: flex;
+  align-self: flex-end;
+  justify-self: right;
+  margin: 0 5px auto auto;
+}
+
+@media all and (max-width: 540px) {
+  .header__nav {
+    /* margin-right: 30px; */
+    font-size: 8px;
+    line-height: 12px;
+  }
+}

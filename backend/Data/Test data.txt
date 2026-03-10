@@ -1,0 +1,14 @@
+
+        "articleRevisionID": 1,
+        "authors": "Lavrov",
+        "affiliations": "RCMG",
+        "articleType": "Test review",
+        "preImageLink": "https://klike.net/uploads/posts/2019-05/1556708032_1.jpg",
+        "articleTitle": "1-st article",
+        "abstract": "This is to test the backend. This is to test the backend. This is to test the backend. This is to test the backend. This is to test the backend. This is to test the backend. This is to test the backend. This is to test the backend. This is to test the backend. This is to test the backend. This is to test the backend. This is to test the backend. This is to test the backend. This is to test the backend. This is to test the backend. This is to test the backend. This is to test the backend. This is to test the backend. This is to test the backend. This is to test the backend. This is to test the backend. This is to test the backend. This is to test the backend. This is to test the backend. ",
+        "winDocID": "C:\Users\Aleksandr.Lavrov\Downloads\20210630_Vollmacht_Visumverfahren_Georgy Lavrov.docx",
+        "ratingByAuthor": 5,
+        "categories": "Test review",
+        "conflictDisclosure": "none",
+        "authorsInput": "LAV did everything",
+        "ethicStatement": "Very ethic"

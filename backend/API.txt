@@ -1,0 +1,143 @@
+/signin
+body: Joi.object().keys({
+      email: Joi.string().required().email(),
+      password: Joi.string().required().min(4),
+    }),
+
+/signup
+body: Joi.object().keys({
+      email: Joi.string().required().email(),
+      password: Joi.string().required().min(4),
+      mobile: Joi.string().length(10).pattern(/^[0-9]+$/).required(),
+      firstName: Joi.string().min(2).max(50),
+      familyName: Joi.string().min(2).max(50),
+      middleName: Joi.string().min(1).max(50),
+      scientificDegree: Joi.string().min(2).max(30),
+      avatar: Joi.string().pattern(/^http(s)?:\/\/(www\.)?[\w\-\.\_\~\:\/\?\#\[\]\@\!\$\&\'\(\)\*\+\,\;\=]+$/).min(12),
+      about: Joi.string().min(2).max(300),
+      institutions: Joi.array(),
+      categories: Joi.array(),
+    }),
+
+/articles
+  /
+  POST
+    createArticle
+  GET
+    getArticles
+  /:articleID/submit
+  POST
+    params: Joi.object().keys({
+      articleID: Joi.string().length(24).required(),
+    }),
+  /:articleID/publish
+  POST
+    params: Joi.object().keys({
+      articleID: Joi.string().length(24).required(),
+    }),
+  /:articleID/selectReviewer
+  POST
+    body: Joi.object().keys({
+      articleID: Joi.string().length(24).required(),
+    }),
+  /:articleID
+  GET
+    body: Joi.object().keys({
+      articleID: Joi.string().length(24).required(),
+    }),
+
+  /:articleID/revisions/
+    GET
+    POST
+      uploadFiles,
+  celebrate(
+    {
+      params: Joi.object().keys({
+        articleID: Joi.string().length(24).required(),
+      }),
+      body: Joi.object().keys({
+        categories: Joi.array().items(Joi.string()).required(),
+        authors: Joi.array()
+          .items(
+            Joi.object({
+              author: Joi.string().required(),
+              affiliations: Joi.array().items(Joi.objectId()).required(),
+            }),
+          ),
+        // affiliations: Joi.array().items(Joi.string()).required(),
+        articleTitle: Joi.string().min(5).required(),
+        abstract: Joi.string().min(500).max(800).required(),
+        articleType: Joi.string().min(2).max(30).required(),
+        // fullText: Joi.string().min(1000).max(50000),
+        articleDoc: Joi.string().min(10).max(60),
+        // pdfID: Joi.string().min(2).max(30),
+        supplements: Joi.string().min(10).max(60),
+        ratingByAuthor: Joi.string().min(1).max(5).required(),
+        conflictDisclosure: Joi.string().min(10).max(300).required(),
+        authorsInput: Joi.string().min(15).max(300).required(),
+        ethicStatement: Joi.string().min(10).max(300).required(),
+        reviews: [Joi.objectId()],
+        replyToReview: Joi.string().min(2),
+      }),
+    },
+  /:articleID/revisions/current
+    GET
+  /:articleID/revisions/:revisionID
+    GET
+    PATCH
+
+
+/authors
+  /
+    GET
+    getAuthors
+  /:authorId
+    GET
+    params: Joi.object().keys({
+        authorId: Joi.string().required().length(24),
+      }),
+  /me
+    GET
+      getMe
+    PATCH
+      body: Joi.object().keys({
+          firstName: Joi.string().min(2).max(40),
+          middleName: Joi.string().min(2).max(40),
+          familyName: Joi.string().min(2).max(40),
+          scientificDegree: Joi.string().min(2).max(20),
+          title: Joi.string().min(2).max(10),
+          institutions: Joi.string().min(2).max(200),
+          categories: Joi.array().items(Joi.string()).required(),
+        }),
+  /me/avatar
+    PATCH
+      body: Joi.object().keys({
+          avatar: Joi.string().pattern(/^http(s)?:\/\/(www\.)?[\w\-\.\_\~\:\/\?\#\[\]\@\!\$\&\'\(\)\*\+\,\;\=]+$/).min(12),
+        }),
+  /me/credentials
+    PATCH
+      body: Joi.object().keys({
+          email: Joi.string().required().email(),
+          password: Joi.string().required().min(4),
+        }),
+  /search
+    GET
+    getAuthorsByName
+
+/affilations
+  /
+  GET
+    getAffiliations
+  POST
+    body: Joi.object().keys({
+      fullTitle: Joi.string().min(2).max(200),
+      shortTitle: Joi.string().min(2).max(200),
+      address: Joi.string().min(2).max(200),
+      logo: Joi.string().pattern(/^http(s)?:\/\/(www\.)?[\w\-\.\_\~\:\/\?\#\[\]\@\!\$\&\'\(\)\*\+\,\;\=]+$/).min(12),
+    }),
+  /:affiliationID
+    GET
+    DELETE
+
+
+/crash-test

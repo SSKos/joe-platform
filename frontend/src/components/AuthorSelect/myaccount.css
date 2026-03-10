@@ -1,0 +1,11 @@
+.myaccount{
+    width: 100%;
+    box-sizing: border-box;
+    padding: 10px 20px 20px 20px;
+  }
+
+  @media all and (max-width: 540px) {
+    .myaccount {
+      padding: 7px 2px 7px 2px;
+    }
+  }

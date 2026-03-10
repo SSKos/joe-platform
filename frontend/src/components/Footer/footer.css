@@ -1,0 +1,23 @@
+.footer {
+  max-width: 100%;
+  max-height: 100px;
+  padding: 5px;
+  background-color: black;
+  display: flex;
+  justify-content: right;
+
+}
+
+@media all and (max-width: 1024px) {
+  .footer {
+    /* width: 95.3125%; */
+    max-width: 100%;
+  }
+}
+
+@media all and (max-width: 768px) {
+  .footer {
+    /* width: 95.3125%; */
+    max-width: 100%;
+  }
+}

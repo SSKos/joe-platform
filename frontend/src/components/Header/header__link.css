@@ -1,0 +1,26 @@
+.header__link {
+  align-self: flex-end;
+  margin: 1px 0 2px auto;
+  font-family: Inter;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 12px;
+  line-height: 12px;
+  /* identical to box height, or 122% */
+  text-align: right;
+  color: #A9A9A9;
+  text-decoration: none;
+}
+
+.header__link:hover {
+  opacity: 0.6;
+  cursor: pointer;
+}
+
+@media all and (max-width: 540px) {
+  .header__link {
+    margin: 1px 0 1px auto;
+    font-size: 10px;
+    line-height: 10px;
+  }
+}

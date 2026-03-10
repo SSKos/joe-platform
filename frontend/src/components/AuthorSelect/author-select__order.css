@@ -1,0 +1,7 @@
+.author-select__order{
+  max-width: 400px;
+  padding: 0 5px 0 5px;
+  border: 1px solid grey;
+  font-size: small;
+  list-style-type: none;
+}

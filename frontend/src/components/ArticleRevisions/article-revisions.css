@@ -1,0 +1,7 @@
+.article-revisions{
+  font-size: small;
+  display: grid;
+  justify-items: start;
+  gap: 7px;
+  grid-template-columns: 1fr 1fr;
+}

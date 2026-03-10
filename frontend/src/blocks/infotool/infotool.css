@@ -1,0 +1,13 @@
+.infotool {
+  width: 430px;
+height: 330px;
+  box-sizing: border-box;
+  /* padding: 34px 36px 37px; */
+  background-color: white;
+  box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.15);
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+}

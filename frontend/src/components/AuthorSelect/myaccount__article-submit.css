@@ -1,0 +1,27 @@
+.myaccount__article-submit {
+  align-self: flex-end;
+  margin: 1px 0 2px auto;
+  font-family: Inter;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 16px;
+  /* identical to box height, or 122% */
+  text-align: right;
+  color: black;
+  text-decoration: none;
+  background-color: lightblue;
+}
+
+.myaccount__article-submit:hover {
+  opacity: 0.6;
+  cursor: pointer;
+}
+
+@media all and (max-width: 540px) {
+  .myaccount__article-submit {
+    margin: 1px 0 1px auto;
+    font-size: 10px;
+    line-height: 10px;
+  }
+}
