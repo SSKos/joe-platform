@@ -55,6 +55,11 @@ app.use(cookieParser());
 app.use(express.json());
 app.use(requestLogger);
 
+// Health check — unauthenticated, used by Fly.io and monitoring
+app.get('/api/health', (req, res) => {
+  res.json({ status: 'ok', timestamp: new Date() });
+});
+
 app.post('/signin', celebrate(
   {
     body: Joi.object().keys({
@@ -100,6 +105,14 @@ app.use(auth);
 app.use('/myaccount', myaccount);
 // Serve PDF files from the 'uploads' folder
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+
+// Production: serve React SPA build and handle client-side routing
+if (process.env.NODE_ENV === 'production') {
+  app.use(express.static(path.join(__dirname, '../frontend/build')));
+  app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, '../frontend/build', 'index.html'));
+  });
+}
 
 app.use(errorLogger);
 // celebrate' errors

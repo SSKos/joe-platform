@@ -3,9 +3,15 @@ const path = require('path');
 const fs = require('fs');
 const errors = require('../errors/errors');
 
+// In production the Fly.io Volume is mounted at /app/backend/uploads.
+// In development files go to backend/uploads/ (relative to backend/ CWD).
+const UPLOAD_DIR = process.env.NODE_ENV === 'production'
+  ? '/app/backend/uploads'
+  : path.join(__dirname, '../uploads');
+
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, 'uploads/');
+    cb(null, UPLOAD_DIR);
   },
   filename: (req, file, cb) => {
     cb(null, file.originalname + '-' + file.fieldname + '-' + req.user._id + '-' + Date.now());
