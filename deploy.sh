@@ -20,14 +20,18 @@ ssh "$SERVER" bash -s << EOF
   cd $APP_DIR
   git pull origin main
 
+  echo "--- Ensuring nginx_shared network exists..."
+  docker network create nginx_shared 2>/dev/null || true
+  docker network connect nginx_shared portfolio_nginx 2>/dev/null || true
+
+  echo "--- Building and starting JOE containers..."
+  docker compose -f $APP_DIR/joe-docker-compose.prod.yml --env-file $APP_DIR/.env.joe up -d --build
+
   echo "--- Copying nginx config..."
   cp $APP_DIR/joe.nginx.conf $NGINX_CONF_DIR/joe.nginx.conf
 
   echo "--- Testing nginx config..."
   docker exec portfolio_nginx nginx -t
-
-  echo "--- Building and restarting JOE containers..."
-  docker compose -f $APP_DIR/joe-docker-compose.prod.yml --env-file $APP_DIR/.env.joe up -d --build
 
   echo "--- Reloading nginx..."
   docker exec portfolio_nginx nginx -s reload
