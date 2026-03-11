@@ -6,8 +6,11 @@ WORKDIR /app
 COPY frontend/package*.json frontend/
 RUN cd frontend && npm ci
 
-# Copy source and build
+# Copy source and build.
+# REACT_APP_API_URL must be empty so the SPA uses same-origin requests.
+# .dockerignore excludes frontend/.env to prevent localhost:2000 being baked in.
 COPY frontend/ frontend/
+ENV REACT_APP_API_URL=
 RUN cd frontend && npm run build
 
 # ── Stage 2: production runner ───────────────────────────────────────────────

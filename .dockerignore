@@ -1,0 +1,17 @@
+node_modules
+frontend/node_modules
+frontend/build
+backend/uploads
+# Exclude all .env files — CRA bakes REACT_APP_* vars at build time.
+# In production the API base URL must be '' (same-origin), which is the
+# fallback when REACT_APP_API_URL is not set.
+.env
+.env.*
+frontend/.env
+frontend/.env.*
+backend/.env
+backend/.env.*
+.git
+.gitignore
+*.iml
+JOE/
