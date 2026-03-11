@@ -48,7 +48,7 @@ const authorSchema = new mongoose.Schema({
   avatar: {
     type: String,
     validate: {
-      validator: (value) => validator.isURL(value),
+      validator: (value) => !value || validator.isURL(value),
       message: 'Wrong URL',
     },
   },

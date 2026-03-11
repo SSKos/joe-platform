@@ -28,13 +28,13 @@ const getMyArticle = (req, res, next) => {
   const { articleID } = req.params;
   logger.info('getMyArticle called', { articleID });
   const authorID = req.user._id;
-  Article.find({ _id: articleID }).populate('revisions')
+  Article.findById(articleID).populate('revisions')
     .then((article) => {
       if (!article) {
         throw new errors.WrongArticleError('No article found');
       }
-      if (article[0].submittingAuthor.toString() !== authorID) {
-        throw new errors.WrongArticleError('You can view only your articles from your cabinet.')
+      if (article.submittingAuthor.toString() !== authorID) {
+        throw new errors.WrongArticleError('You can view only your articles from your cabinet.');
       }
       res.status(200).send(article);
     })

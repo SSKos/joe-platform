@@ -33,8 +33,7 @@ const createArticle = (req, res, next) => {
 
 const getArticle = (req, res, next) => {
   const { articleID } = req.params;
-  // const authorID = req.user._id;
-  Article.find({ state: 'Published', _id: articleID })
+  Article.findOne({ state: 'Published', _id: articleID })
     .then((article) => {
       if (!article) {
         throw new errors.WrongArticleError('No article found');
@@ -60,12 +59,12 @@ const getArticles = (req, res, next) => {
 };
 
 const getAbstracts = (req, res, next) => {
-  Article.find({ "state": { $in: ['Submitted', 'SuggestedForReview', 'UnderReview', 'WaitingAuthorReply', 'Accepted', 'Published'] } }).populate({
+  Article.find({ state: 'Published' }).populate({
     path: 'revisions',
     populate: ({
       path: 'authors',
       populate: [
-        { path: 'author', model: 'author' },
+        { path: 'author', model: 'author', select: 'firstName familyName middleName scientificDegree organisations' },
         { path: 'organisations', model: 'organisation' },
       ],
     }),
@@ -87,7 +86,7 @@ const getAbstracts = (req, res, next) => {
               revisionID: finalRevision._id,
               categories: finalRevision.categories,
               authors: finalRevision.authors,
-              abstractText: finalRevision.abstract,
+              abstract: finalRevision.abstract,
               likes: article.likes,
             }
           )
