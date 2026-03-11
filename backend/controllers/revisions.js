@@ -44,10 +44,14 @@ const createRevision = (req, res, next) => {
         }
       }
       const draftRevision = article.revisions.find(revision => revision.status === 'Draft');
-      if (draftRevision) {
-        throw new errors.CastErrorCode('Article already has a draft of revision. Continue editing');
-      }
-      return Revision.create({
+      const cleanup = draftRevision
+        ? Revision.deleteOne({ _id: draftRevision._id })
+            .then(() => Article.findByIdAndUpdate(
+              articleID,
+              { $pull: { revisions: draftRevision._id } },
+            ))
+        : Promise.resolve();
+      return cleanup.then(() => Revision.create({
         articleID,
         categories,
         authors,
@@ -81,7 +85,7 @@ const createRevision = (req, res, next) => {
             throw new errors.CastErrorCode('No article');
           }
           next(err);
-        });
+        }));
     })
     .catch((err) => {
       if (err.name === 'CastError') {
