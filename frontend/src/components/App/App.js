@@ -33,31 +33,26 @@ function App() {
   const [tipTitle, setTipTitle] = React.useState('');
   // const [loadFullRevisions, setLoadFullRevisions] = React.useState(false);
   const [articleToSubmit, setArticleToSubmit] = React.useState([]);
-  // Restore session from HttpOnly cookie on page load
+  const [sessionChecked, setSessionChecked] = React.useState(false);
+  // Restore session from HttpOnly cookie on page load.
+  // checkSession() calls /authors/me and returns the full user object —
+  // use it directly to avoid a second /authors/me request.
   React.useEffect(() => {
     checkSession()
       .then((res) => {
         if (res) {
           setEmail(res.email);
+          setCurrentUser(res);
           setLoggedIn(true);
         }
       })
       .catch(() => {
         // No active session — user must log in
+      })
+      .finally(() => {
+        setSessionChecked(true);
       });
   }, []);
-
-  React.useEffect(() => {
-    if (loggedIn) {
-      api
-        .getUserInfo()
-        .then(data => {
-          setCurrentUser(data);
-        })
-        .catch((err) => { console.log(err) });
-    }
-
-  }, [loggedIn]);
 
   // Initial abstracts request
   React.useEffect(() => {
@@ -89,12 +84,10 @@ function App() {
   }
 
   function handleRevisionHistoryClick(articleID) {
-    console.log('app: getRevisions in account', articleID)
     api
       .getMyArticle(articleID)
       .then((article) => {
-        console.log(article)
-        setSelectedRevisionHistory(article);
+        setSelectedRevisionHistory([article]);
       })
       .catch((err) => { console.log(err) });
     // setIsImagePopupOpen(true);
@@ -104,7 +97,7 @@ function App() {
     api
       .getMyArticle(articleID, revisionID)
       .then(article => {
-        setArticleToSubmit(article);
+        setArticleToSubmit([article]);
       })
       .catch((err) => { console.log(err) });
 
@@ -134,7 +127,6 @@ function App() {
   }
 
   function handleArticleSubmit(article) {
-    console.log(article);
     // api
     //   .createArticle()
     //   .then(article => {
@@ -230,9 +222,11 @@ function App() {
         if (data) {
           setEmail(email);
           setLoggedIn(true);
-          history.push('/');
+          setSessionChecked(true);
+          return api.getUserInfo();
         }
       })
+      .then((user) => { if (user) setCurrentUser(user); })
       .catch((err) => console.log(err));
   };
   // const [infoToolOk, setInfoToolOk] = React.useState(false);
@@ -318,6 +312,7 @@ function App() {
             path="/myaccount/articles/:articleID"
             component={ArticleSubmit}
             loggedIn={loggedIn}
+            sessionChecked={sessionChecked}
             articleToSubmit={articleToSubmit}
             onSaveArticle={handleArticleSave}
             onSubmitArticle={handleArticleSubmit}
@@ -328,6 +323,7 @@ function App() {
           <ProtectedRoute
             path="/myaccount"
             loggedIn={loggedIn}
+            sessionChecked={sessionChecked}
             component={MyAccount}
             selectedArticle={selectedArticle}
             currentUser={currentUser}
@@ -344,6 +340,7 @@ function App() {
             onSaveArticle={handleArticleSave}
             onSubmitArticle={handleArticleSubmit}
             loggedIn={loggedIn}
+            sessionChecked={sessionChecked}
             component={ArticleSubmit}
             currentUser={currentUser}
             logout={logout}

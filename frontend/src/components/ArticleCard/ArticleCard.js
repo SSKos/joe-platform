@@ -33,7 +33,11 @@ function Abstract({ abstract, onAbstractClick, likes, owner, onArticleLike, onAr
       <div className="card__contents">
         <div className="card__header">
           <p className="card__article-type">{abstract.articleType}</p>
-          <p className="card__article-date">{abstract.articlePublicationDate.toString().slice(0, 10)}</p>
+          <p className="card__article-date">
+            {abstract.articlePublicationDate
+              ? abstract.articlePublicationDate.toString().slice(0, 10)
+              : abstract.articleState}
+          </p>
         </div>
         <Link className="card__link" onClick={handleClick} to={`/articles/${abstract.articleID}/revisions/${abstract.revisionID}`}>
           <img className="card__image" alt="" src="#"></img>
@@ -43,7 +47,7 @@ function Abstract({ abstract, onAbstractClick, likes, owner, onArticleLike, onAr
           {abstract.authors.map((author, index) => (
             <React.Fragment key={author.author._id}>
               <Link to={`/authors/${author.author._id}`}>
-                {author.author.firstName} {author.author.familyName}
+                {author.author.firstName}{author.author.familyName ? ` ${author.author.familyName}` : ''}
               </Link>{' '}
               ({author.organisations.map((organisation) => {
                 if (!organisationDictionary.some(e => e.organisationID === organisation._id)) {
@@ -69,7 +73,7 @@ function Abstract({ abstract, onAbstractClick, likes, owner, onArticleLike, onAr
             index + 1 + ' - ' + organisation.fullTitle
           ))
         } </p>
-        <p className="card__text">{abstract.abstractText}</p>
+        <p className="card__text">{abstract.abstract}</p>
         {/* <div className="elements__element">
             <button
               type="button"

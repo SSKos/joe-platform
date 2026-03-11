@@ -10,7 +10,7 @@ function ArticlePage(props) {
   const article = props.selectedArticle[0][0];
   const revision = props.selectedArticle[1].revision;
   const supplementLinks = revision.supplements;
-  const binaryData = props.selectedArticle[1].fileContent.data;
+  const binaryData = props.selectedArticle[1].fileContent?.data ?? null;
   const organisationDictionary = []; // To track organisations of each article
 
   // Use a regular expression to extract the supplement names
@@ -35,8 +35,8 @@ function ArticlePage(props) {
         <section className="articleTechnical">
           <p className="articleTechnical__element-name">Article ID: <span className="articleTechnical__element-data">{article._id}</span></p>
           <p className="articleTechnical__element-name">Article type: <span className="articleTechnical__element-data">{revision.articleType}</span></p>
-          <p className="articleTechnical__element-name">Published: <span className="articleTechnical__element-data">{article.publicationDateTime.slice(0, 10)}</span></p>
-          <p className="articleTechnical__element-name">Submitted: <span className="articleTechnical__element-data">{article.submittanceDateTime.slice(0, 10)}</span></p>
+          <p className="articleTechnical__element-name">Published: <span className="articleTechnical__element-data">{article.publicationDateTime ? article.publicationDateTime.slice(0, 10) : '—'}</span></p>
+          <p className="articleTechnical__element-name">Submitted: <span className="articleTechnical__element-data">{article.submittanceDateTime ? article.submittanceDateTime.slice(0, 10) : '—'}</span></p>
         </section>
         <section>
           <h2 className="article__title">{revision.articleTitle}</h2>

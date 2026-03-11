@@ -27,8 +27,8 @@ function ArticleSubmit({ articleToSubmit, onSaveArticle, loggedIn, currentUser, 
   React.useEffect(() => {
     if (!currentArticle && articleIDFromUrl) {
       api.getMyArticle(articleIDFromUrl)
-        .then((articles) => {
-          if (articles && articles[0]) setCurrentArticle(articles[0]);
+        .then((article) => {
+          if (article) setCurrentArticle(article);
         })
         .catch((err) => setError('Failed to load article: ' + err));
     }
