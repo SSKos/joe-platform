@@ -1,5 +1,8 @@
 // TODO: set REACT_APP_API_URL in .env.local
-const BASE_URL = process.env.REACT_APP_API_URL || 'http://localhost:2000';
+// In production Express serves the SPA and the API from the same origin,
+// so the base URL is empty (same-origin requests).
+// Set REACT_APP_API_URL=http://localhost:2000 in frontend/.env for local dev.
+const BASE_URL = process.env.REACT_APP_API_URL || '';
 
 class Api {
   constructor(config) {

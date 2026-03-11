@@ -3,9 +3,16 @@ const path = require('path');
 const fs = require('fs');
 const errors = require('../errors/errors');
 
+// In production (Docker) use the absolute path that matches both the
+// express.static('/app/backend/uploads') call in app.js and the volume mount.
+// In development (CWD = backend/) 'uploads/' resolves to backend/uploads/ — same result.
+const UPLOAD_DIR = process.env.NODE_ENV === 'production'
+  ? '/app/backend/uploads'
+  : 'uploads/';
+
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, 'uploads/');
+    cb(null, UPLOAD_DIR);
   },
   filename: (req, file, cb) => {
     cb(null, file.originalname + '-' + file.fieldname + '-' + req.user._id + '-' + Date.now());

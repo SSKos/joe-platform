@@ -1,0 +1,40 @@
+services:
+
+  joe_backend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: joe_backend
+    restart: unless-stopped
+    env_file: .env.joe
+    depends_on:
+      - joe_mongo
+    volumes:
+      # Persist uploaded manuscript files across container restarts and redeploys
+      - joe_uploads:/app/backend/uploads
+    networks:
+      - joe_network    # reaches joe_mongo
+      - nginx_shared   # reached by portfolio_nginx for reverse proxy
+
+  joe_mongo:
+    image: mongo:7
+    container_name: joe_mongo
+    restart: unless-stopped
+    volumes:
+      - joe_mongo_data:/data/db
+    networks:
+      - joe_network    # internal only — no ports exposed to host or nginx
+
+networks:
+  joe_network:
+    driver: bridge
+
+  nginx_shared:
+    # Pre-existing external network shared with portfolio_nginx.
+    # Create once: docker network create nginx_shared
+    # Connect nginx: docker network connect nginx_shared portfolio_nginx
+    external: true
+
+volumes:
+  joe_mongo_data:
+  joe_uploads:
