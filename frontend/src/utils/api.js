@@ -120,12 +120,12 @@ class Api {
       .then(this._checkResponse);
   }
 
-  createRevision(revision) {
-    return fetch(`${this._baseUrl}/articles/${revision.articleID}/revisions`, {
+  createRevision({ articleID, ...revisionData }) {
+    return fetch(`${this._baseUrl}/articles/${articleID}/revisions`, {
       method: 'POST',
       headers: this._headers,
       credentials: 'include',
-      body: JSON.stringify(revision),
+      body: JSON.stringify(revisionData),
     })
       .then(this._checkResponse);
   }

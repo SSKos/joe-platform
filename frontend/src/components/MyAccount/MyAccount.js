@@ -33,7 +33,7 @@ function MyAccount(props) {
         logout={props.logout} />
 
       <section className="myaccount">
-        <Link className="myaccount__article-submit" to='/articles/create' onClick={handleArticleSubmit}>Start a new article</Link>
+        <button className="myaccount__article-submit" onClick={handleArticleSubmit}>Start a new article</button>
       </section>
       <section className="myaccount__articles page__elements-margin">
         My articles

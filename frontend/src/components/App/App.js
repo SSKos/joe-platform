@@ -126,6 +126,7 @@ function App() {
       .createArticle()
       .then(article => {
         setArticleToSubmit([article]);
+        history.push(`/myaccount/articles/${article._id}`);
       })
       .catch((err) => { console.log(err) });
   }
