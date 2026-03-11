@@ -28,6 +28,7 @@ function App() {
   const [abstracts, setAbstracts] = React.useState([]);
   // const [articleToDelete, setArticleToDelete] = React.useState({});
   const [loggedIn, setLoggedIn] = React.useState(false);
+  const [abstractsLoading, setAbstractsLoading] = React.useState(true);
   const [email, setEmail] = React.useState('');
   const [tipTitle, setTipTitle] = React.useState('');
   // const [loadFullRevisions, setLoadFullRevisions] = React.useState(false);
@@ -68,7 +69,8 @@ function App() {
         setAbstracts(abstracts);
         console.log("here-3", abstracts);
       })
-      .catch((err) => { console.log(err) });
+      .catch((err) => { console.log(err) })
+      .finally(() => { setAbstractsLoading(false); });
   }, []);
 
   React.useEffect(() => {
@@ -248,22 +250,17 @@ function App() {
   };
   // const [infoToolOk, setInfoToolOk] = React.useState(false);
 
-  function handleRegister(email, password) {
-    auth.register(email, password)
+  function handleRegister(firstName, email, password) {
+    auth.register(firstName, email, password)
       .then((data) => {
         if (data) {
           setEmail(data.email);
-          // setIsInfoTooltipOpen(true);
           setTipTitle("Вы успешно зарегистрировались!");
-          // setInfoToolOk(true);
         }
       })
       .catch(() => {
-        // setIsInfoTooltipOpen(true);
         setTipTitle("Что-то пошло не так! Попробуйте ещё раз.");
-        // setInfoToolOk(false);
       });
-
   };
   function logout() {
     signout()
@@ -302,6 +299,7 @@ function App() {
           <Route exact path="/">
             <MainPage
               abstracts={abstracts}
+              abstractsLoading={abstractsLoading}
               onAbstractClick={handleAbstractClick}
               // onArticleLike={handleArticleLike}
               // selectedArticleName={selectedArticle.name}

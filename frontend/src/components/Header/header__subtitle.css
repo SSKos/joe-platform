@@ -1,11 +1,12 @@
 .header__subtitle {
-  font-size: 14px;
+  font-size: 12px;
   line-height: 14px;
-  margin: 5px auto auto 5px;
+  margin: 2px auto auto 0;
+  color: #64748b;
 }
 
 @media all and (max-width: 540px) {
   .header__subtitle {
-    font-size: 12px;
+    font-size: 11px;
   }
 }

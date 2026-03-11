@@ -73,7 +73,7 @@ app.post('/signup', celebrate(
     body: Joi.object().keys({
       email: Joi.string().required().email(),
       password: Joi.string().required().min(4),
-      mobile: Joi.string().length(10).pattern(/^[0-9]+$/).required(),
+      mobile: Joi.string().length(10).pattern(/^[0-9]+$/).optional().allow(''),
       firstName: Joi.string().min(2).max(50),
       familyName: Joi.string().min(2).max(50),
       middleName: Joi.string().min(1).max(50).allow(''),

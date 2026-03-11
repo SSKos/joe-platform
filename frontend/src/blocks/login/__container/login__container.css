@@ -1,12 +1,22 @@
-.login__container {
-  width: 358px;
+.login__container,
+.register__container {
+  width: 420px;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: stretch;
+  background: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+  padding: 44px 40px 36px;
+  margin-top: 72px;
 }
 
-@media all and (max-width: 470px) {
-  .login__container {
-    width: 260px;
+@media all and (max-width: 500px) {
+  .login__container,
+  .register__container {
+    width: calc(100vw - 32px);
+    padding: 32px 20px 28px;
+    margin-top: 40px;
+    border-radius: 12px;
   }
 }

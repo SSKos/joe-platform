@@ -6,7 +6,7 @@ function checkResponse(res) {
   return Promise.reject(`Error: ${res.status}`);
 }
 
-export const register = (email, password) => {
+export const register = (firstName, email, password) => {
   return fetch(`${BASE_URL}/signup`, {
     method: 'POST',
     headers: {
@@ -14,7 +14,7 @@ export const register = (email, password) => {
       'Accept': 'application/json',
     },
     credentials: 'include',
-    body: JSON.stringify({ password, email }),
+    body: JSON.stringify({ password, email, firstName }),
   })
     .then(checkResponse);
 };

@@ -1,20 +1,27 @@
 .login__input {
-  width: 358px;
-  height: 27px;
-  margin-bottom: 30px;
+  width: 100%;
+  height: 46px;
+  padding: 0 14px;
+  margin-bottom: 14px;
   font-family: Inter;
-font-style: normal;
-font-weight: normal;
-font-size: 14px;
-line-height: 17px;
-border: 0;
-border-bottom: 2px solid #CCCCCC;
-background-color: black;
-color: #CCCCCC;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 15px;
+  line-height: 1;
+  border: 1.5px solid #cbd5e1;
+  border-radius: 8px;
+  background-color: #f8fafc;
+  color: #1e293b;
+  box-sizing: border-box;
+  transition: border-color 0.15s, background-color 0.15s;
 }
 
-@media all and (max-width: 470px) {
-  .login__input {
-    width: 260px;
-  }
+.login__input:focus {
+  outline: none;
+  border-color: #3b82f6;
+  background-color: #ffffff;
+}
+
+.login__input::placeholder {
+  color: #94a3b8;
 }

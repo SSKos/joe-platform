@@ -9,11 +9,11 @@
   align-items: center;
   padding: 45px 15px 60px;
   box-sizing: border-box;
-  background: black;
+  background: #f5f7fa;
 }
 
 @media all and (max-width: 700px) {
   .page {
-  padding: 28px 0 36px;
+    padding: 28px 0 36px;
   }
 }

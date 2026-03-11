@@ -1,14 +1,13 @@
 .header__title {
-  font-size: 24px;
-  color: white;
-  font-weight: 500;
-  margin: 5px auto 5px 5px;
+  font-size: 22px;
+  color: #1e293b;
+  font-weight: 700;
+  margin: 5px auto 5px 0;
   text-decoration: none;
-
 }
 
 @media all and (max-width: 540px) {
   .header__title {
-    font-size: 18px;
+    font-size: 17px;
   }
 }

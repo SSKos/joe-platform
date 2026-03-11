@@ -5,17 +5,11 @@ import { Link } from 'react-router-dom';
 
 function Login(props) {
   const [email, setEmail] = React.useState('');
-  const [password, setPassword] = React.useState();
+  const [password, setPassword] = React.useState('');
 
-  function onEmailChange(event) {
-    setEmail(event.target.value);
-  }
-  function onPasswordChange(event) {
-    setPassword(event.target.value);
-  }
   function handleSubmit(e) {
     e.preventDefault();
-    if (!email || !password) { return };
+    if (!email || !password) { return; }
     props.onLogin(email, password);
   }
 
@@ -23,35 +17,31 @@ function Login(props) {
     <div className="main">
       <Header signin={true} />
       <section className="login__container">
-        <h1 className="login__header">
-          Personal area
-        </h1>
+        <h1 className="login__header">Welcome back</h1>
         <form className="login__form" onSubmit={handleSubmit}>
           <input
-            className="login__input" placeholder="email"
+            className="login__input"
+            placeholder="Email"
             value={email}
-            onChange={onEmailChange}
+            onChange={(e) => setEmail(e.target.value)}
             type="email"
             required
           />
           <input
-            className="login__input" placeholder="password"
+            className="login__input"
+            placeholder="Password"
             value={password}
-            onChange={onPasswordChange}
+            onChange={(e) => setPassword(e.target.value)}
             type="password"
             required
           />
-          <button
-            type="submit"
-            className="login__button"
-          >Log in
-          </button>
-          <Link to='./sign-up' className="registration__underbutton">Not registerd? Register</Link>
+          <button type="submit" className="login__button">Log in</button>
+          <Link to='/sign-up' className="registration__underbutton">No account yet? Register</Link>
         </form>
       </section>
       <Footer />
     </div>
-  )
+  );
 }
 
 export default Login;

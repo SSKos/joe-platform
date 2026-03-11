@@ -1,21 +1,17 @@
 .header__author_name {
-  align-self: flex-end;
-  margin: 1px 0 1px auto;
-height: 16px;
-font-family: Inter;
-font-style: normal;
-font-weight: normal;
-font-size: 14px;
-line-height: 20px;
-/* identical to box height, or 122% */
-text-align: right;
-color: #FFFFFF;
+  align-self: center;
+  margin: 0 8px 0 auto;
+  font-family: Inter;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 20px;
+  text-align: right;
+  color: #1e293b;
 }
 
 @media all and (max-width: 540px) {
   .header__author_name {
-    /* margin-right: 15px; */
     font-size: 12px;
-line-height: 12px;
   }
 }

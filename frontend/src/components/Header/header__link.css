@@ -1,26 +1,29 @@
 .header__link {
-  align-self: flex-end;
-  margin: 1px 0 2px auto;
+  align-self: center;
+  margin: 0 0 0 8px;
   font-family: Inter;
   font-style: normal;
-  font-weight: normal;
-  font-size: 12px;
-  line-height: 12px;
-  /* identical to box height, or 122% */
+  font-weight: 500;
+  font-size: 13px;
+  line-height: 1;
   text-align: right;
-  color: #A9A9A9;
+  color: #3b82f6;
   text-decoration: none;
+  padding: 7px 14px;
+  border: 1.5px solid #3b82f6;
+  border-radius: 6px;
+  transition: background-color 0.15s, color 0.15s;
 }
 
 .header__link:hover {
-  opacity: 0.6;
+  background-color: #3b82f6;
+  color: #ffffff;
   cursor: pointer;
 }
 
 @media all and (max-width: 540px) {
   .header__link {
-    margin: 1px 0 1px auto;
-    font-size: 10px;
-    line-height: 10px;
+    font-size: 11px;
+    padding: 5px 10px;
   }
 }

@@ -1,22 +1,29 @@
 .article-submit__input {
   width: 100%;
   box-sizing: border-box;
-  height: 37px;
-  margin: 5px 0;
+  height: 42px;
+  padding: 0 12px;
+  margin: 6px 0;
+  font-family: Inter;
   font-weight: normal;
   font-size: 14px;
-  line-height: 17px;
-  border: 1px solid lightgray;
-  border-radius: 3px;
-  border-bottom: 1px solid rgba(0, 0, 0, .2);
-  text-overflow: ellipsis;
+  line-height: 1.2;
+  border: 1.5px solid #e2e8f0;
+  border-radius: 8px;
+  background-color: #f8fafc;
+  color: #1e293b;
+  transition: border-color 0.15s;
+}
+
+.article-submit__input:focus {
+  outline: none;
+  border-color: #3b82f6;
+  background-color: #ffffff;
 }
 
 .article-submit__input_error {
-  border-bottom: 1px solid rgba(255, 0, 0);
+  border-color: #ef4444;
 }
-
-
 
 @media all and (max-width: 780px) {
   .article-submit__input {

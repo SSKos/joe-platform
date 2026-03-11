@@ -4,55 +4,54 @@ import Header from '../Header/Header.js';
 import Footer from '../Footer/Footer.js';
 
 function Register(props) {
+  const [firstName, setFirstName] = React.useState('');
   const [email, setEmail] = React.useState('');
-  const [password, setPassword] = React.useState();
+  const [password, setPassword] = React.useState('');
 
-  function onEmailChange(event) {
-    setEmail(event.target.value);
-  }
-  function onPasswordChange(event) {
-    setPassword(event.target.value);
-  }
   function handleSubmit(e) {
     e.preventDefault();
-    if (!email || !password) { return };
-    props.onRegister(email, password);
+    if (!firstName || !email || !password) { return; }
+    props.onRegister(firstName, email, password);
   }
   return (
     <div className="main">
       <Header signin={false} />
       <section className="register__container">
-        <h1 className="register__header">
-          Registration
+        <h1 className="login__header">
+          Create account
         </h1>
-        <form
-          className="login__form"
-          onSubmit={handleSubmit}
-        >
+        <form className="login__form" onSubmit={handleSubmit}>
           <input
-            className="login__input" placeholder="email"
-            onChange={onEmailChange}
+            className="login__input"
+            placeholder="First name"
+            onChange={(e) => setFirstName(e.target.value)}
+            value={firstName}
+            type="text"
+            required
+          />
+          <input
+            className="login__input"
+            placeholder="Email"
+            onChange={(e) => setEmail(e.target.value)}
             value={email}
             type="email"
             required
           />
           <input
-            className="login__input" placeholder="password"
-            onChange={onPasswordChange}
+            className="login__input"
+            placeholder="Password"
+            onChange={(e) => setPassword(e.target.value)}
             value={password}
             type="password"
             required
           />
-          <button
-            type="submit"
-            className="login__button">Register
-          </button>
-          <Link to='./sign-in' className="registration__underbutton">Already registerd? Login</Link>
+          <button type="submit" className="login__button">Create account</button>
+          <Link to='/sign-in' className="registration__underbutton">Already have an account? Log in</Link>
         </form>
       </section>
       <Footer />
-    </div >
-  )
+    </div>
+  );
 }
 
 export default Register;
