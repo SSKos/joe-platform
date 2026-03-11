@@ -5,7 +5,7 @@
 
 set -e  # exit on any error
 
-SERVER="root@157.180.85.212"
+SERVER="portfolio-server"
 APP_DIR="/var/www/joe"
 NGINX_CONF_DIR="/var/www/html/nginx/conf.d"
 
