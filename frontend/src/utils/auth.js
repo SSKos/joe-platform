@@ -1,5 +1,5 @@
 // TODO: set REACT_APP_API_URL in .env.local
-export const BASE_URL = process.env.REACT_APP_API_URL || 'http://localhost:2000';
+export const BASE_URL = process.env.REACT_APP_API_URL || '';
 
 function checkResponse(res) {
   if (res.ok) { return res.json(); }
