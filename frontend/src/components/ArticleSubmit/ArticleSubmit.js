@@ -66,6 +66,10 @@ function ArticleSubmit({ articleToSubmit, onSaveArticle, loggedIn, currentUser, 
     });
   }
 
+  if (error && !currentArticle) {
+    return <div style={{ padding: '48px', textAlign: 'center', color: '#ef4444' }}>{error}</div>;
+  }
+
   if (!currentArticle) {
     return <div style={{ padding: '48px', textAlign: 'center', color: '#64748b' }}>Loading article...</div>;
   }
