@@ -1,11 +1,15 @@
 import api from '../../utils/api.js';
 import React from "react";
+import { useParams } from 'react-router-dom';
 import Header from "../Header/Header";
 import Footer from "../Footer/Footer";
 import CategorySelect from "../CategorySelect/CategorySelect";
 
 function ArticleSubmit({ articleToSubmit, onSaveArticle, loggedIn, currentUser, logout }) {
-  const currentArticle = articleToSubmit[0];
+  const { articleID: articleIDFromUrl } = useParams();
+  const [currentArticle, setCurrentArticle] = React.useState(
+    articleToSubmit && articleToSubmit[0] ? articleToSubmit[0] : null
+  );
 
   const [articleTitle, setTitle] = React.useState('');
   const [abstract, setAbstract] = React.useState('');
@@ -18,6 +22,17 @@ function ArticleSubmit({ articleToSubmit, onSaveArticle, loggedIn, currentUser, 
   const [categories, setCategory] = React.useState([]);
   const [saving, setSaving] = React.useState(false);
   const [error, setError] = React.useState('');
+
+  // If articleToSubmit wasn't pre-loaded (e.g. direct URL navigation), fetch by URL param
+  React.useEffect(() => {
+    if (!currentArticle && articleIDFromUrl) {
+      api.getMyArticle(articleIDFromUrl)
+        .then((articles) => {
+          if (articles && articles[0]) setCurrentArticle(articles[0]);
+        })
+        .catch((err) => setError('Failed to load article: ' + err));
+    }
+  }, [articleIDFromUrl]);
 
   function onCategoryChange(event) {
     setCategory(event ? event.map((c) => c.label) : []);
@@ -51,8 +66,8 @@ function ArticleSubmit({ articleToSubmit, onSaveArticle, loggedIn, currentUser, 
     });
   }
 
-  if (articleToSubmit.length === 0) {
-    return <div style={{ padding: '48px', textAlign: 'center', color: '#64748b' }}>Preparing article form...</div>;
+  if (!currentArticle) {
+    return <div style={{ padding: '48px', textAlign: 'center', color: '#64748b' }}>Loading article...</div>;
   }
 
   return (

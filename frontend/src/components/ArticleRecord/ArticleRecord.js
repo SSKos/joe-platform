@@ -44,8 +44,7 @@ function ArticleRecord({ article, onPublishedRecordClick, onSubmissionClick, onR
           {(() => {
             switch (article.state) {
               case 'Submitting':
-                return  <Link key={article._id} onClick={handleSubmissionClick} to={`/myaccount/articles/${article._id}/revisions`} >Continue submission
-                </Link>;
+                return <Link key={article._id} to={`/myaccount/articles/${article._id}`}>Continue submission</Link>;
               case 'Submitted':
                 return 'Find reviewers';
               case 'Accepted':
