@@ -49,12 +49,10 @@ function App() {
 
   React.useEffect(() => {
     if (loggedIn) {
-      console.log(loggedIn);
       api
         .getUserInfo()
         .then(data => {
           setCurrentUser(data);
-          console.log("here-2");
         })
         .catch((err) => { console.log(err) });
     }
@@ -67,19 +65,11 @@ function App() {
       .getInitialAbstracts()
       .then(abstracts => {
         setAbstracts(abstracts);
-        console.log("here-3", abstracts);
       })
       .catch((err) => { console.log(err) })
       .finally(() => { setAbstractsLoading(false); });
   }, []);
 
-  React.useEffect(() => {
-    // This code will run whenever selectedArticle changes
-    console.log(selectedArticle);
-    // You can access article and revision here
-    // const [currentArticle, currentRevision] = selectedArticle;
-    // Do something with currentArticle and currentRevision
-  }, [selectedArticle]); // Add selectedArticle as a dependency
 
   // Page handlers
 
@@ -276,8 +266,6 @@ function App() {
         setEmail('');
       });
   };
-
-  console.log(selectedArticle);
 
   return (
     <CurrentUserContext.Provider value={currentUser}>

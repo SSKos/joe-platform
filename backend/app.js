@@ -95,6 +95,21 @@ app.post('/signout', (req, res) => {
   res.clearCookie('jwt').json({ message: 'Signed out' });
 });
 
+// Production: static assets and SPA shell for browser navigations.
+// Must be before API routes so that reloading a SPA URL (e.g. /myaccount/articles/:id)
+// returns index.html instead of the API JSON response.
+// Browser navigations carry Accept: text/html; programmatic fetch uses Accept: */*,
+// so we use that header to distinguish them.
+if (process.env.NODE_ENV === 'production') {
+  app.use(express.static(path.join(__dirname, '../frontend/build')));
+  app.get('*', (req, res, next) => {
+    if (req.headers.accept && req.headers.accept.includes('text/html')) {
+      return res.sendFile(path.join(__dirname, '../frontend/build', 'index.html'));
+    }
+    next();
+  });
+}
+
 // app.use(auth);
 app.use('/articles', articles);
 // app.use('/articles', revisions);
@@ -104,15 +119,6 @@ app.use('/organisation', organisations);
 app.use('/myaccount', myaccount);  // auth is applied per-route inside myaccount router
 // Serve uploaded files
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
-
-// Production: serve React SPA static assets and handle client-side routing.
-// Must be after all API routes so the catch-all doesn't intercept API calls.
-if (process.env.NODE_ENV === 'production') {
-  app.use(express.static(path.join(__dirname, '../frontend/build')));
-  app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, '../frontend/build', 'index.html'));
-  });
-}
 
 app.use(errorLogger);
 // celebrate' errors

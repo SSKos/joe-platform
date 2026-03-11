@@ -42,7 +42,6 @@ const revisionSchema = new mongoose.Schema({
   abstract: {
     required: true,
     type: String,
-    minLength: 10,
   },
 
   articleType: {
@@ -74,19 +73,16 @@ const revisionSchema = new mongoose.Schema({
   conflictDisclosure: {
     required: true,
     type: String,
-    minLength: 3,
   },
 
   authorsInput: {
     required: true,
     type: String,
-    minLength: 3,
   },
 
   ethicStatement: {
     required: true,
     type: String,
-    minLength: 3,
   },
 
   reviews: [{
