@@ -125,25 +125,22 @@ function App() {
     api
       .createArticle()
       .then(article => {
-        console.log(article)
-        setArticleToSubmit(article);
+        setArticleToSubmit([article]);
       })
       .catch((err) => { console.log(err) });
-
-    // setIsImagePopupOpen(true);
   }
 
   function handleArticleSave(revision) {
-    console.log(revision);
     api
       .createRevision(revision)
-      .then(revision => {
-        console.log(revision)
-        // setArticleToSubmit(article);
+      .then(() => api.submitArticle(revision.articleID))
+      .then(() => api.getInitialAbstracts())
+      .then((freshAbstracts) => {
+        setAbstracts(freshAbstracts);
+        setAbstractsLoading(false);
+        history.push('/');
       })
       .catch((err) => { console.log(err) });
-
-    // setIsImagePopupOpen(true);
   }
 
   function handleArticleSubmit(article) {
@@ -252,11 +249,19 @@ function App() {
 
   function handleRegister(firstName, email, password) {
     auth.register(firstName, email, password)
-      .then((data) => {
-        if (data) {
-          setEmail(data.email);
-          setTipTitle("Вы успешно зарегистрировались!");
-        }
+      .then(() => auth.login(email, password))
+      .then(() => {
+        setEmail(email);
+        setLoggedIn(true);
+        return api.getUserInfo();
+      })
+      .then((user) => {
+        setCurrentUser(user);
+        return api.createArticle();
+      })
+      .then((article) => {
+        setArticleToSubmit([article]);
+        history.push('/articleSubmit');
       })
       .catch(() => {
         setTipTitle("Что-то пошло не так! Попробуйте ещё раз.");

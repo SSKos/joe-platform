@@ -60,7 +60,7 @@ const getArticles = (req, res, next) => {
 };
 
 const getAbstracts = (req, res, next) => {
-  Article.find({ "state": "Published" }).populate({
+  Article.find({ "state": { $in: ['Submitted', 'SuggestedForReview', 'UnderReview', 'WaitingAuthorReply', 'Accepted', 'Published'] } }).populate({
     path: 'revisions',
     populate: ({
       path: 'authors',
@@ -73,22 +73,25 @@ const getAbstracts = (req, res, next) => {
 
     .then((articles) => {
       let abstracts = {};
-      abstracts = articles.map((article) => {
-        const finalRevision = article.revisions[article.revisions.length - 1];
-        return (
-          {
-            articleType: finalRevision.articleType,
-            articleTitle: finalRevision.articleTitle,
-            articlePublicationDate: article.publicationDateTime,
-            articleID: article._id,
-            revisionID: finalRevision._id,
-            categories: finalRevision.categories,
-            authors: finalRevision.authors,
-            abstractText: finalRevision.abstract,
-            likes: article.likes,
-          }
-        )
-      });
+      abstracts = articles
+        .filter((article) => article.revisions && article.revisions.length > 0)
+        .map((article) => {
+          const finalRevision = article.revisions[article.revisions.length - 1];
+          return (
+            {
+              articleType: finalRevision.articleType,
+              articleTitle: finalRevision.articleTitle,
+              articlePublicationDate: article.publicationDateTime,
+              articleState: article.state,
+              articleID: article._id,
+              revisionID: finalRevision._id,
+              categories: finalRevision.categories,
+              authors: finalRevision.authors,
+              abstractText: finalRevision.abstract,
+              likes: article.likes,
+            }
+          )
+        });
       return abstracts
     })
     .then((abstracts) => res.status(200).send(abstracts))

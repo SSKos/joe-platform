@@ -18,12 +18,14 @@ const createRevision = (req, res, next) => {
     authorsInput,
     ethicStatement,
     replyToReview,
+    articleDocUrl,
   } = req.body;
-  const articleDoc = req.files.articleDoc[0].path;
-  let supplements = [];
-  if (req.files.supplements) {
-    supplements = req.files.supplements.map((file) => file.path);
-  }
+  const articleDoc = (req.files && req.files.articleDoc)
+    ? req.files.articleDoc[0].path
+    : (articleDocUrl || '');
+  const supplements = (req.files && req.files.supplements)
+    ? req.files.supplements.map((file) => file.path)
+    : [];
   const { articleID } = req.params;
   const submittingAuthorID = req.user._id;
 

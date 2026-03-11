@@ -130,6 +130,15 @@ class Api {
       .then(this._checkResponse);
   }
 
+  submitArticle(articleID) {
+    return fetch(`${this._baseUrl}/articles/${articleID}/submit`, {
+      method: 'POST',
+      headers: this._headers,
+      credentials: 'include',
+    })
+      .then(this._checkResponse);
+  }
+
   saveArticle(inputData) {
     return fetch(`${this._baseUrl}/articles/submit`, {
       method: 'POST',
