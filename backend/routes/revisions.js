@@ -25,30 +25,6 @@ const uploadFiles = upload.fields([
 router.post('/',
   auth,
   uploadFiles,
-  celebrate({
-    params: Joi.object().keys({
-      articleID: Joi.string().length(24).required(),
-    }),
-    body: Joi.object().keys({
-      categories: Joi.array().items(Joi.string()),
-      authors: Joi.array().items(
-        Joi.object({
-          author: Joi.string().required(),
-          organisations: Joi.array().items(Joi.objectId()),
-        }),
-      ),
-      articleTitle: Joi.string().min(5).required(),
-      abstract: Joi.string().min(10).max(5000).required(),
-      articleType: Joi.string().min(2).max(50).required(),
-      articleDocUrl: Joi.string().max(500).allow(''),
-      ratingByAuthor: Joi.alternatives().try(Joi.number(), Joi.string()).required(),
-      conflictDisclosure: Joi.string().min(3).max(1000).required(),
-      authorsInput: Joi.string().min(3).max(1000).required(),
-      ethicStatement: Joi.string().min(3).max(1000).required(),
-      reviews: Joi.array().items(Joi.objectId()),
-      replyToReview: Joi.string().min(2),
-    }),
-  }),
   createRevision);
 
 router.patch('/:revisionID',

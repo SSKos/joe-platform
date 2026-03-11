@@ -63,7 +63,11 @@ function ArticleSubmit({ articleToSubmit, onSaveArticle, loggedIn, currentUser, 
       ethicStatement,
       categories,
       authors,
-    });
+    })
+      .catch((err) => {
+        setError('Submission failed: ' + err);
+        setSaving(false);
+      });
   }
 
   if (error && !currentArticle) {

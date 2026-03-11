@@ -132,7 +132,7 @@ function App() {
   }
 
   function handleArticleSave(revision) {
-    api
+    return api
       .createRevision(revision)
       .then(() => api.submitArticle(revision.articleID))
       .then(() => api.getInitialAbstracts())
@@ -140,8 +140,7 @@ function App() {
         setAbstracts(freshAbstracts);
         setAbstractsLoading(false);
         history.push('/');
-      })
-      .catch((err) => { console.log(err) });
+      });
   }
 
   function handleArticleSubmit(article) {
