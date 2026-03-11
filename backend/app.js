@@ -101,12 +101,12 @@ app.use('/articles', articles);
 // app.use('/articles', reviews);
 app.use('/authors', authors);
 app.use('/organisation', organisations);
-app.use(auth);
-app.use('/myaccount', myaccount);
+app.use('/myaccount', myaccount);  // auth is applied per-route inside myaccount router
 // Serve uploaded files
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
-// Production: serve React SPA build and handle client-side routing
+// Production: serve React SPA static assets and handle client-side routing.
+// Must be after all API routes so the catch-all doesn't intercept API calls.
 if (process.env.NODE_ENV === 'production') {
   app.use(express.static(path.join(__dirname, '../frontend/build')));
   app.get('*', (req, res) => {
