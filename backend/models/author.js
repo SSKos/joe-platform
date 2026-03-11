@@ -23,8 +23,7 @@ const authorSchema = new mongoose.Schema({
 
   mobile: {
     type: String,
-    required: true,
-    unique: true,
+    sparse: true,
   },
 
   firstName: {
@@ -38,7 +37,6 @@ const authorSchema = new mongoose.Schema({
   },
 
   familyName: {
-    required: true,
     type: String,
     minLength: 2,
   },
@@ -61,8 +59,8 @@ const authorSchema = new mongoose.Schema({
   }],
 
   categories: {
-    required: true,
     type: [String],
+    default: [],
   }, //this should be suspended some time later when enough authors are present to replace search of reviewers through the categories of the published aricles
 
   reviewer: {
